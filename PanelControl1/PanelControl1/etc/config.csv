@@ -1,0 +1,145 @@
+# ARDUINO / SHIELD,PARAM,VALOR,CANAL,MOTOR,PATA,PARAMETRO,COLOR,OBS
+1,1,45,1,1,1,MOT-1+,naranja,Coxa 1
+1,11,12,1,1,1,MOT-1-,amarillo,Coxa 1
+1,21,55,1,1,1,ENC-1,violeta,Coxa 1
+1,31,54,1,1,1,INI-1,gris,Coxa 1
+1,2,10,1,2,2,MOT-2+,amarillo,Coxa 2
+1,12,11,1,2,2,MOT-2-,naranja,Coxa 2
+1,22,57,1,2,2,ENC-2,violeta,Coxa 2
+1,32,56,1,2,2,INI-2,gris,Coxa 2
+1,3,9,2,3,3,MOT-3+,naranja,Coxa 3
+1,13,8,2,3,3,MOT-3-,amarillo,Coxa 3
+1,23,59,2,3,3,ENC-3,violeta,Coxa 3
+1,33,58,2,3,3,INI-3,gris,Coxa 3
+1,4,6,2,4,4,MOT-4+,amarillo,Coxa 4
+1,14,7,2,4,4,MOT-4-,naranja,Coxa 4
+1,24,61,2,4,4,ENC-4,violeta,Coxa 4
+1,34,60,2,4,4,INI-4,gris,Coxa 4
+1,5,5,3,5,5,MOT-5+,naranja,Coxa 5
+1,15,4,3,5,5,MOT-5-,amarillo,Coxa 5
+1,25,63,3,5,5,ENC-5,violeta,Coxa 5
+1,35,62,3,5,5,INI-5,gris,Coxa 5
+1,6,2,3,6,6,MOT-6+,amarillo,Coxa 6
+1,16,3,3,6,6,MOT-6-,naranja,Coxa 6
+1,26,65,3,6,6,ENC-6,violeta,Coxa 6
+1,36,64,3,6,6,INI-6,gris,Coxa 6
+1,81,4350,1,1,1,MAX-1,---,Coxa 1
+1,82,4200,1,2,2,MAX-2,---,Coxa 2
+1,83,4020,2,3,3,MAX-3,---,Coxa 3
+1,84,4770,2,4,4,MAX-4,---,Coxa 4
+1,85,3850,3,5,5,MAX-5,---,Coxa 5
+1,86,4400,3,6,6,MAX-6,---,Coxa 6
+1,91,1000,1,1,1,KP-1,---,Coxa 1
+1,92,1000,1,2,2,KP-2,---,Coxa 2
+1,93,1000,2,3,3,KP-3,---,Coxa 3
+1,94,1000,2,4,4,KP-4,---,Coxa 4
+1,95,1000,3,5,5,KP-5,---,Coxa 5
+1,96,1000,3,6,6,KP-6,---,Coxa 6
+1,101,50,1,1,1,KI-1,---,Coxa 1
+1,102,50,1,2,2,KI-2,---,Coxa 2
+1,103,50,2,3,3,KI-3,---,Coxa 3
+1,104,50,2,4,4,KI-4,---,Coxa 4
+1,105,50,3,5,5,KI-5,---,Coxa 5
+1,106,50,3,6,6,KI-6,---,Coxa 6
+1,111,0,1,1,1,KD-1,---,Coxa 1
+1,112,0,1,2,2,KD-2,---,Coxa 2
+1,113,0,2,3,3,KD-3,---,Coxa 3
+1,114,0,2,4,4,KD-4,---,Coxa 4
+1,115,0,3,5,5,KD-5,---,Coxa 5
+1,116,0,3,6,6,KD-6,---,Coxa 6
+2,1,12,1,1,1,MOT-1+,amarillo,Femur 1
+2,11,45,1,1,1,MOT-1-,naranja,Femur 1
+2,21,54,1,1,1,ENC-1,violeta,Femur 1 - invertido
+2,31,55,1,1,1,INI-1,gris,Femur 1 - invertido
+2,2,10,1,2,1,MOT-2+,blanco,Tibia 1
+2,12,11,1,2,1,MOT-2-,azul,Tibia 1
+2,22,57,1,2,1,ENC-2,violeta,Tibia 1
+2,32,56,1,2,1,INI-2,gris,Tibia 1
+2,3,8,2,3,2,MOT-3+,amarillo,Femur 2
+2,13,9,2,3,2,MOT-3-,naranja,Femur 2
+2,23,58,2,3,2,ENC-3,violeta,Femur 2 - invertido
+2,33,59,2,3,2,INI-3,gris,Femur 2 - invertido
+2,4,6,2,4,2,MOT-4+,blanco,Tibia 2
+2,14,7,2,4,2,MOT-4-,azul,Tibia 2
+2,24,61,2,4,2,ENC-4,violeta,Tibia 2
+2,34,60,2,4,2,INI-4,gris,Tibia 2
+2,5,4,3,5,3,MOT-5+,amarillo,Femur 3
+2,15,5,3,5,3,MOT-5-,naranja,Femur 3
+2,25,62,3,5,3,ENC-5,violeta,Femur 3 - invertido
+2,35,63,3,5,3,INI-5,gris,Femur 3 - invertido
+2,6,2,3,6,3,MOT-6+,amarillo,Tibia 3
+2,16,3,3,6,3,MOT-6-,blanco,Tibia 3
+2,26,65,3,6,3,ENC-6,azul,Tibia 3
+2,36,64,3,6,3,INI-6,gris,Tibia 3
+2,81,1500,1,1,1,MAX-1,---,Femur 1
+2,82,1500,1,2,1,MAX-2,---,Tibia 1
+2,83,1500,2,3,2,MAX-3,---,Femur 2
+2,84,1500,2,4,2,MAX-4,---,Tibia 2
+2,85,1500,3,5,3,MAX-5,---,Femur 3
+2,86,1500,3,6,3,MAX-6,---,Tibia 3
+2,91,1000,1,1,1,KP-1,---,Femur 1
+2,92,1000,1,2,1,KP-2,---,Tibia 1
+2,93,1000,2,3,2,KP-3,---,Femur 2
+2,94,1000,2,4,2,KP-4,---,Tibia 2
+2,95,1000,3,5,3,KP-5,---,Femur 3
+2,96,1000,3,6,3,KP-6,---,Tibia 3
+2,101,50,1,1,1,KI-1,---,Femur 1
+2,102,50,1,2,1,KI-2,---,Tibia 1
+2,103,50,2,3,2,KI-3,---,Femur 2
+2,104,50,2,4,2,KI-4,---,Tibia 2
+2,105,50,3,5,3,KI-5,---,Femur 3
+2,106,50,3,6,3,KI-6,---,Tibia 3
+2,111,0,1,1,1,KD-1,---,Femur 1
+2,112,0,1,2,1,KD-2,---,Tibia 1
+2,113,0,2,3,2,KD-3,---,Femur 2
+2,114,0,2,4,2,KD-4,---,Tibia 2
+2,115,0,3,5,3,KD-5,---,Femur 3
+2,116,0,3,6,3,KD-6,---,Tibia 3
+3,1,12,1,1,4,MOT-1+,amarillo,Femur 4
+3,11,45,1,1,4,MOT-1-,naranja,Femur 4
+3,21,54,1,1,4,ENC-1,violeta,Femur 4 - invertido
+3,31,55,1,1,4,INI-1,gris,Femur 4 - invertido
+3,2,10,1,2,4,MOT-2+,blanco,Tibia 4
+3,12,11,1,2,4,MOT-2-,azul,Tibia 4
+3,22,57,1,2,4,ENC-2,violeta,Tibia 4
+3,32,56,1,2,4,INI-2,gris,Tibia 4
+3,3,8,2,3,5,MOT-3+,amarillo,Femur 5
+3,13,9,2,3,5,MOT-3-,naranja,Femur 5
+3,23,58,2,3,5,ENC-3,violeta,Femur 5 - invertido
+3,33,59,2,3,5,INI-3,gris,Femur 5 - invertido
+3,4,6,2,4,5,MOT-4+,blanco,Tibia 5
+3,14,7,2,4,5,MOT-4-,azul,Tibia 5
+3,24,61,2,4,5,ENC-4,violeta,Tibia 5
+3,34,60,2,4,5,INI-4,gris,Tibia 5
+3,5,4,3,5,6,MOT-5+,amarillo,Femur 6
+3,15,5,3,5,6,MOT-5-,naranja,Femur 6
+3,25,62,3,5,6,ENC-5,violeta,Femur 6 - invertido
+3,35,63,3,5,6,INI-5,gris,Femur 6 - invertido
+3,6,2,3,6,6,MOT-6+,amarillo,Tibia 6
+3,16,3,3,6,6,MOT-6-,blanco,Tibia 6
+3,26,65,3,6,6,ENC-6,azul,Tibia 6
+3,36,64,3,6,6,INI-6,gris,Tibia 6
+3,81,1500,1,1,4,MAX-1,---,Femur 4
+3,82,1500,1,2,4,MAX-2,---,Tibia 4
+3,83,1500,2,3,5,MAX-3,---,Femur 5
+3,84,1500,2,4,5,MAX-4,---,Tibia 5
+3,85,1500,3,5,6,MAX-5,---,Femur 6
+3,86,1500,3,6,6,MAX-6,---,Tibia 6
+3,91,1000,1,1,4,KP-1,---,Femur 4
+3,92,1000,1,2,4,KP-2,---,Tibia 4
+3,93,1000,2,3,5,KP-3,---,Femur 5
+3,94,1000,2,4,5,KP-4,---,Tibia 5
+3,95,1000,3,5,6,KP-5,---,Femur 6
+3,96,1000,3,6,6,KP-6,---,Tibia 6
+3,101,50,1,1,4,KI-1,---,Femur 4
+3,102,50,1,2,4,KI-2,---,Tibia 4
+3,103,50,2,3,5,KI-3,---,Femur 5
+3,104,50,2,4,5,KI-4,---,Tibia 5
+3,105,50,3,5,6,KI-5,---,Femur 6
+3,106,50,3,6,6,KI-6,---,Tibia 6
+3,111,0,1,1,4,KD-1,---,Femur 4
+3,112,0,1,2,4,KD-2,---,Tibia 4
+3,113,0,2,3,5,KD-3,---,Femur 5
+3,114,0,2,4,5,KD-4,---,Tibia 5
+3,115,0,3,5,6,KD-5,---,Femur 6
+3,116,0,3,6,6,KD-6,---,Tibia 6
