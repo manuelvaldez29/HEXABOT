@@ -1,0 +1,12 @@
+# Salidas de compilación de NetBeans / javac
+build/
+dist/
+*.class
+**/nbproject/private/
+
+# Webots
+*.wbproj
+.*.wbproj
+controllers/**/__pycache__/
+__pycache__/
+*.pyc
