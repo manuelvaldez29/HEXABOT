@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +21,22 @@ import java.util.Map;
 public class Hexapodo {
 
     public static final String m_PROP_PSTEP = "pStep";
+
+    /**
+     * Máximo giro de coxa en la marcha de coxas, en grados, a velocidad 100
+     */
+    public static final double AMPLITUD_MAX_COXAS = 25.0;
+
+    /**
+     * Diferencia aceptada entre setpoint y posición para considerar que un
+     * actuador llegó, en pulsos del encoder
+     */
+    public static final int TOLERANCIA_LLEGADA_PULSOS = 15;
+
+    /**
+     * Tiempo máximo de espera de llegada de los actuadores, en ms
+     */
+    public static final int TIMEOUT_LLEGADA_MS = 10000;
 
     /**
      *
@@ -81,6 +98,18 @@ public class Hexapodo {
      *
      */
     private STEP_MODE m_stepMode = STEP_MODE.ORTHOGONAL;
+
+    /**
+     * Algoritmo de caminata. TRIPODE es el original (18 motores); COXAS es la
+     * marcha del simulador Webots, que solo mueve las 6 coxas
+     */
+    private MARCHA m_marcha = MARCHA.TRIPODE;
+
+    /**
+     * Dirección del Arduino virtual del simulador, por ejemplo
+     * "tcp://127.0.0.1:5000". Si es null se usan los puertos serie
+     */
+    private String m_direccionTcp;
     /**
      *
      */
@@ -334,6 +363,11 @@ public class Hexapodo {
         for (int l_shieldNo : l_config.keySet()) {
             Map<Integer, Integer> l_shieldConfig = l_config.get(l_shieldNo);
 
+            if (m_direccionTcp != null
+                    && m_shields[l_shieldNo - 1].getPort() == null) {
+                // En el simulador solo está conectado el Arduino 1
+                continue;
+            } // end if
             m_shields[l_shieldNo - 1].doConfigure(l_shieldConfig);
 
         } // end for
@@ -348,6 +382,15 @@ public class Hexapodo {
      */
     public void doDiscover() throws Exception {
         doClose();
+        if (m_direccionTcp != null) {
+            // Simulador: un único Arduino (el 1, que controla las coxas)
+            m_shields[0].doDiscover(Arrays.asList(m_direccionTcp));
+            if (m_shields[0].getPort() == null) {
+                throw new Exception("No se pudo conectar con el simulador en "
+                        + m_direccionTcp);
+            } // end if
+            return;
+        } // end if
         List<String> l_serialPorts = HexaUtils.getSerialPorts();
         for (Shield l_shield : m_shields) {
             l_shield.doDiscover(l_serialPorts);
@@ -648,6 +691,36 @@ public class Hexapodo {
         ELLIPTICAL
     }
 
+    public enum MARCHA {
+        TRIPODE,
+        COXAS
+    }
+
+    public MARCHA getMarcha() {
+        return m_marcha;
+    }
+
+    public void setMarcha(MARCHA p_marcha) {
+        m_marcha = p_marcha;
+    }
+
+    public String getDireccionTcp() {
+        return m_direccionTcp;
+    }
+
+    /**
+     * Establece la dirección del simulador. Al usar el simulador, la marcha
+     * pasa a ser la de coxas
+     *
+     * @param p_direccionTcp por ejemplo "tcp://127.0.0.1:5000"
+     */
+    public void setDireccionTcp(String p_direccionTcp) {
+        m_direccionTcp = p_direccionTcp;
+        if (p_direccionTcp != null) {
+            setMarcha(MARCHA.COXAS);
+        } // end if
+    }
+
     public class WalkerThread extends Thread {
 
         /**
@@ -670,7 +743,29 @@ public class Hexapodo {
          */
         private String m_legsToBackward = "246";
 
+        /**
+         * Fase de la marcha de coxas: 0 a 2 recuperan un par de patas, 3 es
+         * el empuje con las seis
+         */
+        private int m_faseCoxas = 0;
+
+        /**
+         * Pares de patas opuestas que se recuperan juntas en la marcha de
+         * coxas
+         */
+        private final int[][] m_paresRecuperacion = {{1, 4}, {2, 5}, {3, 6}};
+
+        /**
+         * Lado de cada pata: +1 derecha (1, 2, 3), -1 izquierda (4, 5, 6)
+         */
+        private final int[] m_lado = {1, 1, 1, -1, -1, -1};
+
         private void autoStep() throws Exception {
+
+            if (m_marcha == MARCHA.COXAS) {
+                pasoCoxas();
+                return;
+            } // end if
 
             if (m_speed == 0) {
                 // Nada por hacer
@@ -692,6 +787,87 @@ public class Hexapodo {
             // Demora de 100 a 400mS, para velocidades del 100% a 25%
             int l_delay = ((m_speed - 25) * -4 + 400) * 5;
             safeSleep(l_delay);
+        }
+
+        /**
+         * Marcha con un solo motor por pata (simulador Webots). Como las
+         * patas no se levantan, se recuperan de a dos mientras las otras
+         * cuatro sostienen el cuerpo por rozamiento, y después las seis
+         * empujan juntas. Ver docs/MARCHA_COXAS.md
+         */
+        private void pasoCoxas() throws Exception {
+            if (m_speed == 0) {
+                // Nada por hacer
+                safeSleep(500);
+                return;
+            } // end if
+
+            double l_amplitud = AMPLITUD_MAX_COXAS * Math.min(m_speed, 100)
+                    / 100.0;
+            double l_rumbo = Math.toRadians(m_bearing);
+
+            int[] l_patas;
+            double l_signo;
+            if (m_faseCoxas < m_paresRecuperacion.length) {
+                l_patas = m_paresRecuperacion[m_faseCoxas];
+                l_signo = 1.0;
+            } else {
+                l_patas = new int[]{1, 2, 3, 4, 5, 6};
+                l_signo = -1.0;
+            } // end if
+
+            for (int l_nroPata : l_patas) {
+                // Adelante: las derechas giran a +A y las izquierdas a -A.
+                // Girar suma el mismo sentido en las seis
+                double l_factor = m_lado[l_nroPata - 1] * Math.cos(l_rumbo)
+                        - Math.sin(l_rumbo);
+                l_factor = Math.max(-1.0, Math.min(1.0, l_factor));
+
+                Pata l_pata = getPata(l_nroPata);
+                l_pata.setAngCoxa(l_signo * l_amplitud * l_factor);
+                l_pata.recalculaVertices();
+                l_pata.estableceActuadores();
+            } // end for
+
+            esperaLlegada(l_patas);
+            m_faseCoxas = (m_faseCoxas + 1) % (m_paresRecuperacion.length + 1);
+        }
+
+        /**
+         * Espera a que las coxas indicadas lleguen a su setpoint, consultando
+         * al Arduino 1 con el comando Q. Sin conexión espera un tiempo fijo
+         */
+        private void esperaLlegada(int[] p_patas) throws Exception {
+            ClientServerPort l_port = m_shields[0].getPort();
+            if (!m_sendCommands || l_port == null) {
+                safeSleep((m_speed - 25) * -4 + 400);
+                return;
+            } // end if
+
+            long l_limite = System.currentTimeMillis() + TIMEOUT_LLEGADA_MS;
+            while (System.currentTimeMillis() < l_limite) {
+                String[] l_campos = l_port.sendCommandWaitResponse("Q", null)
+                        .trim().split("\\s+");
+                boolean l_llegaron = true;
+                for (int l_nroPata : p_patas) {
+                    int l_actual = Integer.parseInt(l_campos[l_nroPata - 1]);
+                    int l_setpoint = getPata(l_nroPata).getActCoxa()
+                            .getSetpointPulsos();
+                    if (Math.abs(l_actual - l_setpoint)
+                            > TOLERANCIA_LLEGADA_PULSOS) {
+                        l_llegaron = false;
+                        break;
+                    } // end if
+                } // end for
+                if (l_llegaron) {
+                    return;
+                } // end if
+                safeSleep(50);
+            } // end while
+            if (m_tracer != null) {
+                m_tracer.trace("Timeout esperando la llegada de las coxas "
+                        + Arrays.toString(p_patas));
+            } // end if
         }
 
         public String getLegsToForward() {
@@ -764,6 +940,10 @@ public class Hexapodo {
     }
 
     public String doSend(int p_shield, String p_toSend) throws Exception {
+        if (m_shields[p_shield - 1].getPort() == null) {
+            // Shield no conectado (en el simulador solo existe el Arduino 1)
+            return null;
+        } // end if
         return m_shields[p_shield - 1].getPort().sendCommandWaitResponse(
                 p_toSend, null);
     }

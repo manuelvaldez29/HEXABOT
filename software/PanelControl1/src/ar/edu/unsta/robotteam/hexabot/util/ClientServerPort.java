@@ -8,6 +8,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.util.concurrent.TimeoutException;
 
 /**
@@ -16,8 +18,15 @@ import java.util.concurrent.TimeoutException;
  */
 public class ClientServerPort {
 
+    /**
+     * Prefijo de los nombres de puerto que se abren por TCP/IP en lugar de
+     * puerto serie. Ejemplo: "tcp://127.0.0.1:5000" (simulador Webots)
+     */
+    public static final String PREFIJO_TCP = "tcp://";
+
     private String m_portName;
     private SerialPort m_port;
+    private Socket m_socket;
     private BufferedReader m_reader;
     private PrintWriter m_writer;
     private int m_timeoutInMs;
@@ -41,13 +50,42 @@ public class ClientServerPort {
      * @throws Exception
      */
     public void open() throws Exception {
-        m_port = ar.edu.unsta.robotteam.hexabot.util.HexaUtils.open(m_portName,
-                115200);
-        InputStream l_in = m_port.getInputStream();
+        InputStream l_in;
+        OutputStream l_out;
+        if (isTcp(m_portName)) {
+            // Conexión TCP/IP con el Arduino virtual del simulador
+            String l_hostPuerto = m_portName.substring(PREFIJO_TCP.length());
+            int l_sep = l_hostPuerto.lastIndexOf(':');
+            m_socket = new Socket();
+            m_socket.setTcpNoDelay(true);
+            m_socket.connect(new InetSocketAddress(
+                    l_hostPuerto.substring(0, l_sep),
+                    Integer.parseInt(l_hostPuerto.substring(l_sep + 1))),
+                    m_timeoutInMs);
+            l_in = m_socket.getInputStream();
+            l_out = m_socket.getOutputStream();
+        } else {
+            m_port = ar.edu.unsta.robotteam.hexabot.util.HexaUtils.open(
+                    m_portName, 115200);
+            l_in = m_port.getInputStream();
+            l_out = m_port.getOutputStream();
+        } // end if
         m_reader = new BufferedReader(new InputStreamReader(l_in, "ASCII"));
-        OutputStream l_out = m_port.getOutputStream();
         m_writer = new PrintWriter(new OutputStreamWriter(l_out, "ASCII"), true);
-        Thread.sleep(1000);
+        if (m_port != null) {
+            // El Arduino se reinicia al abrir el puerto serie
+            Thread.sleep(1000);
+        } // end if
+    }
+
+    /**
+     * Indica si el nombre de puerto corresponde a una conexión TCP/IP
+     *
+     * @param p_portName
+     * @return
+     */
+    public static boolean isTcp(String p_portName) {
+        return p_portName != null && p_portName.startsWith(PREFIJO_TCP);
     }
 
     /**
@@ -64,7 +102,12 @@ public class ClientServerPort {
         } catch (Exception l_ex) {
         }
         try {
-            m_port.close();
+            if (m_port != null) {
+                m_port.close();
+            } // end if
+            if (m_socket != null) {
+                m_socket.close();
+            } // end if
         } catch (Exception l_ex) {
         }
     }

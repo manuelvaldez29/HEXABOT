@@ -40,6 +40,11 @@ public class Actuador {
     private double m_setpoint;
 
     /**
+     * Último setpoint enviado, en pulsos del encoder
+     */
+    private int m_setpointPulsos;
+
+    /**
      * Largo actual actuador, en mm. Incluido el largo muerto. Debe variar entre
      * m_minLongitud y m_maxLongitud.
      */
@@ -151,11 +156,21 @@ public class Actuador {
         } // end if
 
         int l_pulses = (int) ((p_setpoint - m_minLongitud) * m_mm2pulse);
+        m_setpointPulsos = l_pulses;
 
         if (m_sendCommands) {
             m_canalShield.cmdSet(l_pulses);
         } // end if
 
+    }
+
+    /**
+     * Último setpoint calculado, en pulsos del encoder
+     *
+     * @return
+     */
+    public int getSetpointPulsos() {
+        return m_setpointPulsos;
     }
 
     /**

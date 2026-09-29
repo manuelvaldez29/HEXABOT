@@ -2,6 +2,7 @@ package ar.edu.unsta.robotteam.hexabot.view;
 
 import ar.edu.unsta.robotteam.hexabot.model.Hexapodo;
 import ar.edu.unsta.robotteam.hexabot.model.Pata;
+import ar.edu.unsta.robotteam.hexabot.util.ClientServerPort;
 import ar.edu.unsta.robotteam.scene3d.Point3D;
 import ar.edu.unsta.robotteam.scene3d.Scene3DModel;
 import ar.edu.unsta.robotteam.scene3d.Scene3DView;
@@ -1418,12 +1419,25 @@ public class PanelControl extends javax.swing.JFrame implements Tracer {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(final String args[]) {
+
+        // Dirección del simulador Webots, por ejemplo tcp://127.0.0.1:5000.
+        // Sin argumento se usan los Arduinos por puerto serie, como antes
+        final String l_direccionTcp = args.length > 0
+                && ClientServerPort.isTcp(args[0]) ? args[0] : null;
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PanelControl().setVisible(true);
+                PanelControl l_panel = new PanelControl();
+                if (l_direccionTcp != null) {
+                    l_panel.m_hexapodo.setDireccionTcp(l_direccionTcp);
+                    l_panel.setTitle(l_panel.getTitle() + " - Webots "
+                            + l_direccionTcp);
+                    l_panel.trace("Simulador: " + l_direccionTcp
+                            + " (marcha de coxas)");
+                } // end if
+                l_panel.setVisible(true);
             }
         });
     }

@@ -29,10 +29,18 @@ public class CanalShield {
     }
 
     public String cmdInit() throws Exception {
+        if (m_shield.getPort() == null) {
+            // Shield no conectado (en el simulador solo existe el Arduino 1)
+            return null;
+        } // end if
         return m_shield.getPort().sendCommandWaitResponse("I", m_nroCanal);
     }
 
     public String cmdSet(int p_pulses) throws Exception {
+        if (m_shield.getPort() == null) {
+            // Shield no conectado (en el simulador solo existe el Arduino 1)
+            return null;
+        } // end if
         return m_shield.getPort().sendCommandWaitResponse("S", m_nroCanal,
                 p_pulses);
     }
