@@ -1,0 +1,187 @@
+#VRML_SIM R2025a utf8
+# license: Proyecto académico UNSTA
+# documentation url: ../../README.md
+# HEXABOT simplificado para Webots: 6 motores, uno por pata (las coxas).
+# Fémur y tibia quedan rígidos en la pose "Up" del panel original
+# (fémur horizontal de 380 mm, tibia vertical de 475 mm).
+# Medidas tomadas de Hexapodo.java y Pata.java del proyecto original.
+# El sistema de coordenadas es el del panel: +Y es el frente del robot.
+
+PROTO Hexabot [
+  field SFVec3f    translation      0 0 0.41
+  field SFRotation rotation         0 0 1 0
+  field SFString   name             "HEXABOT"
+  field SFString   controller       "hexabot_arduino"
+  field MFString   controllerArgs   []
+  field SFBool     supervisor       FALSE
+  field SFFloat    masaCuerpo       12     # kg (estimado, la tesis no da el peso por pieza)
+  field SFFloat    masaPata         1.5    # kg (estimado)
+  field SFFloat    velocidadCoxa    1.0    # rad/s, velocidad máxima del motor de coxa
+  field SFFloat    torqueCoxa       30     # N·m (estimado)
+]
+{
+  %<
+    // Medidas en metros, del modelo del panel de control
+    const radio = 0.15;          // centro del cuerpo -> eje de coxa
+    const alturaCuerpo = 0.195;  // placas inferior y superior del hexágono
+    const alturaFemur = 0.065;   // eje del fémur sobre la placa inferior (largoCoxa)
+    const largoFemur = 0.38;
+    const largoTibia = 0.475;
+    const radioPie = 0.03;
+    // Ángulo radial de cada pata: 1 = 60º (delantera derecha), luego -60º cada una
+    const angulos = [60, 0, -60, -120, 180, 120];
+  >%
+  Robot {
+    translation IS translation
+    rotation IS rotation
+    name IS name
+    controller IS controller
+    controllerArgs IS controllerArgs
+    supervisor IS supervisor
+    children [
+      DEF CUERPO Pose {
+        translation 0 0 %<= alturaCuerpo / 2 >%
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.72 0.53 0.32
+              roughness 0.8
+              metalness 0
+            }
+            geometry Cylinder {
+              height %<= alturaCuerpo >%
+              radius 0.18
+              subdivision 6
+            }
+          }
+        ]
+      }
+      # Marca en el frente (+Y) para ver la orientación
+      Pose {
+        translation 0 0.12 %<= alturaCuerpo + 0.01 >%
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.9 0.1 0.1
+              metalness 0
+            }
+            geometry Box {
+              size 0.04 0.1 0.02
+            }
+          }
+        ]
+      }
+      GPS {
+        name "gps"
+      }
+      InertialUnit {
+        name "imu"
+      }
+      %< for (let i = 0; i < 6; ++i) {
+           const a = angulos[i] * Math.PI / 180;
+           const x = radio * Math.cos(a);
+           const y = radio * Math.sin(a);
+      >%
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0 0 1
+          anchor %<= x >% %<= y >% %<= alturaFemur >%
+        }
+        device [
+          RotationalMotor {
+            name "coxa%<= i + 1 >%"
+            minPosition -0.72
+            maxPosition 0.80
+            maxVelocity IS velocidadCoxa
+            maxTorque IS torqueCoxa
+          }
+          PositionSensor {
+            name "coxa%<= i + 1 >%_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation %<= x >% %<= y >% %<= alturaFemur >%
+          rotation 0 0 1 %<= a >%
+          name "pata%<= i + 1 >%"
+          contactMaterial "pie"
+          children [
+            # Soporte de la coxa
+            Pose {
+              translation 0.03 0 0
+              children [
+                Shape {
+                  appearance DEF METAL PBRAppearance {
+                    baseColor 0.6 0.62 0.65
+                    roughness 0.4
+                    metalness 0.8
+                  }
+                  geometry Box {
+                    size 0.08 0.08 0.1
+                  }
+                }
+              ]
+            }
+            # Fémur (rígido, horizontal)
+            DEF FEMUR Pose {
+              translation %<= largoFemur / 2 >% 0 0
+              children [
+                Shape {
+                  appearance USE METAL
+                  geometry Box {
+                    size %<= largoFemur >% 0.04 0.04
+                  }
+                }
+              ]
+            }
+            # Tibia (rígida, vertical)
+            DEF TIBIA Pose {
+              translation %<= largoFemur >% 0 %<= -(largoTibia - 2 * radioPie) / 2 >%
+              children [
+                Shape {
+                  appearance USE METAL
+                  geometry Box {
+                    size 0.04 0.04 %<= largoTibia - 2 * radioPie >%
+                  }
+                }
+              ]
+            }
+            # Pie: única parte que toca el piso
+            DEF PIE Pose {
+              translation %<= largoFemur >% 0 %<= -largoTibia + radioPie >%
+              children [
+                Shape {
+                  appearance PBRAppearance {
+                    baseColor 0.1 0.1 0.1
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry Sphere {
+                    radius %<= radioPie >%
+                    subdivision 2
+                  }
+                }
+              ]
+            }
+          ]
+          boundingObject Group {
+            children [
+              USE FEMUR
+              USE TIBIA
+              USE PIE
+            ]
+          }
+          physics Physics {
+            density -1
+            mass IS masaPata
+          }
+        }
+      }
+      %< } >%
+    ]
+    boundingObject USE CUERPO
+    physics Physics {
+      density -1
+      mass IS masaCuerpo
+    }
+  }
+}
