@@ -355,6 +355,30 @@ public class Hexapodo {
     }
 
     /**
+     * Puertos TCP de los tres Arduinos simulados en Webots, en orden: el
+     * shield 1 se conecta al primero, el 2 al segundo y el 3 al tercero.
+     */
+    public static final int[] PUERTOS_SIMULADOR = {1001, 1002, 1003};
+
+    /**
+     * Conecta cada shield con su Arduino simulado en Webots, por TCP/IP. Es el
+     * equivalente de doDiscover() para la simulación: en lugar de recorrer los
+     * puertos serie, cada shield abre su puerto TCP y verifica, con el comando
+     * "A", que del otro lado esté el Arduino con su mismo número.
+     *
+     * @param p_host nombre o IP de la PC donde corre Webots
+     * @throws Exception
+     */
+    public void doConnect(String p_host) throws Exception {
+        doClose();
+        for (Shield l_shield : m_shields) {
+            int l_puerto = PUERTOS_SIMULADOR[l_shield.getNroShield() - 1];
+            l_shield.doConnect(ClientServerPort.PREFIJO_TCP + p_host + ":"
+                    + l_puerto);
+        } // end for
+    }
+
+    /**
      * Get the value of m_bearing
      *
      * @return the value of m_bearing

@@ -1,0 +1,5 @@
+# Compilación del panel con compilar.bat
+PanelControl1/PanelControl1/build/compilado/
+
+# Python
+__pycache__/

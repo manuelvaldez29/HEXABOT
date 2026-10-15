@@ -33,6 +33,11 @@ public class PanelControl extends javax.swing.JFrame implements Tracer {
     private Scene3DView m_3dView;
 
     /**
+     * Nombre o IP de la PC donde corre la simulación en Webots
+     */
+    private String m_direccionSimulador = "localhost";
+
+    /**
      * Creates new form PanelControl
      */
     public PanelControl() {
@@ -569,7 +574,7 @@ public class PanelControl extends javax.swing.JFrame implements Tracer {
         ui_pnlLeftNorth.add(ui_cmdStop);
 
         ui_cmdDiscover.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        ui_cmdDiscover.setText("Discover");
+        ui_cmdDiscover.setText("Connect");
         ui_cmdDiscover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ui_cmdDiscoverActionPerformed(evt);
@@ -1399,13 +1404,22 @@ public class PanelControl extends javax.swing.JFrame implements Tracer {
     }
 
     private void doDiscover() {
+        // Conexión TCP/IP con el robot simulado en Webots
+        final String l_direccion = javax.swing.JOptionPane.showInputDialog(
+                this, "PC donde corre Webots (nombre o IP).\n"
+                + "Se conecta a los puertos 1001, 1002 y 1003:",
+                m_direccionSimulador);
+        if (l_direccion == null || l_direccion.trim().isEmpty()) {
+            return;
+        } // end if
+        m_direccionSimulador = l_direccion.trim();
         ui_cmdDiscover.setEnabled(false);
-        trace("DISCOVER");
+        trace("CONNECT " + m_direccionSimulador);
         new Thread() {
             @Override
             public void run() {
                 try {
-                    m_hexapodo.doDiscover();
+                    m_hexapodo.doConnect(m_direccionSimulador);
                 } catch (Exception l_ex) {
                     trace(l_ex);
                 } finally {

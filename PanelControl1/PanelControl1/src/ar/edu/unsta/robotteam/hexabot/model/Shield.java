@@ -161,4 +161,38 @@ public class Shield {
         return m_port;
     }
 
+    /**
+     * Asigna la conexión del shield.
+     */
+    public void setPort(ClientServerPort p_port) {
+        m_port = p_port;
+    }
+
+    /**
+     * Abre la conexión con un Arduino en un puerto conocido (por ejemplo
+     * "tcp://localhost:1001" en la simulación) y verifica que sea el Arduino
+     * que corresponde a este shield.
+     *
+     * @throws Exception
+     */
+    public void doConnect(String p_portName) throws Exception {
+        m_tracer.trace("CONNECT " + p_portName);
+        ClientServerPort l_port = new ClientServerPort(p_portName, 2000,
+                m_tracer);
+        l_port.open();
+        String l_response;
+        try {
+            l_response = l_port.sendCommandWaitResponse("A", null);
+        } catch (Exception l_ex) {
+            l_port.close();
+            throw l_ex;
+        }
+        if (!l_response.equals(String.valueOf(getNroShield()))) {
+            l_port.close();
+            throw new Exception("En " + p_portName + " responde el Arduino "
+                    + l_response + "; se esperaba el " + getNroShield());
+        } // end if
+        m_port = l_port;
+    }
+
 }

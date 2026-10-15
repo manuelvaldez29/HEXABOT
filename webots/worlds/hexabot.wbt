@@ -1,0 +1,2964 @@
+#VRML_SIM R2025a utf8
+
+WorldInfo {
+  info [
+    "HEXABOT - Universidad del Norte Santo Tomás de Aquino"
+    "Robot hexápodo de 18 motores controlado por TCP/IP"
+  ]
+  title "HEXABOT"
+  basicTimeStep 8
+  contactProperties [
+    ContactProperties {
+      material1 "pie"
+      material2 "piso"
+      coulombFriction [
+        1.2
+      ]
+      softCFM 0.0001
+    }
+  ]
+}
+Viewpoint {
+  orientation -0.22869554162387365 0.09469815387748508 0.9688811118468351 2.3783
+  position 3.262712695428139 -3.262736873640958 2.606784207822978
+  follow "HEXABOT"
+  followType "Pan and Tilt Shot"
+}
+Background {
+  skyColor [
+    0.78 0.84 0.92
+  ]
+}
+DirectionalLight {
+  direction -0.4 0.6 -1
+  intensity 2.5
+  castShadows TRUE
+}
+DirectionalLight {
+  direction 0.5 -0.3 -0.6
+  intensity 0.8
+}
+Solid {
+  translation 0 0 -0.01
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.55 0.57 0.6
+        baseColorMap ImageTexture {
+          url [
+            "../herramientas/textura_piso.png"
+          ]
+        }
+        roughness 1
+        metalness 0
+        textureTransform TextureTransform {
+          scale 20 20
+        }
+      }
+      geometry Box {
+        size 20 20 0.02
+      }
+    }
+  ]
+  name "piso"
+  contactMaterial "piso"
+  boundingObject Box {
+    size 20 20 0.02
+  }
+  locked TRUE
+}
+Robot {
+  translation 0 0 0.415
+  children [
+    Pose {
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.16 0.5
+            roughness 0.5
+            metalness 0.2
+          }
+          geometry Cylinder {
+            height 0.004
+            radius 0.16
+            subdivision 6
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.22
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.16 0.5
+            roughness 0.5
+            metalness 0.2
+          }
+          geometry Cylinder {
+            height 0.004
+            radius 0.16
+            subdivision 6
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.27
+      rotation 0 0 1 0.5236
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.16 0.5
+            roughness 0.5
+            metalness 0.2
+          }
+          geometry Cylinder {
+            height 0.004
+            radius 0.115
+            subdivision 6
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.0953 0.055 0.11
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.62 0.64
+            roughness 0.3
+            metalness 0.8
+          }
+          geometry Cylinder {
+            height 0.22
+            radius 0.005
+            subdivision 10
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.0857 0.0495 0.245
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.62 0.64
+            roughness 0.3
+            metalness 0.8
+          }
+          geometry Cylinder {
+            height 0.05
+            radius 0.005
+            subdivision 10
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0.11 0.11
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.62 0.64
+            roughness 0.3
+            metalness 0.8
+          }
+          geometry Cylinder {
+            height 0.22
+            radius 0.005
+            subdivision 10
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0.099 0.245
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.62 0.64
+            roughness 0.3
+            metalness 0.8
+          }
+          geometry Cylinder {
+            height 0.05
+            radius 0.005
+            subdivision 10
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.0953 0.055 0.11
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.62 0.64
+            roughness 0.3
+            metalness 0.8
+          }
+          geometry Cylinder {
+            height 0.22
+            radius 0.005
+            subdivision 10
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.0857 0.0495 0.245
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.62 0.64
+            roughness 0.3
+            metalness 0.8
+          }
+          geometry Cylinder {
+            height 0.05
+            radius 0.005
+            subdivision 10
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.0953 -0.055 0.11
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.62 0.64
+            roughness 0.3
+            metalness 0.8
+          }
+          geometry Cylinder {
+            height 0.22
+            radius 0.005
+            subdivision 10
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.0857 -0.0495 0.245
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.62 0.64
+            roughness 0.3
+            metalness 0.8
+          }
+          geometry Cylinder {
+            height 0.05
+            radius 0.005
+            subdivision 10
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 -0.11 0.11
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.62 0.64
+            roughness 0.3
+            metalness 0.8
+          }
+          geometry Cylinder {
+            height 0.22
+            radius 0.005
+            subdivision 10
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 -0.099 0.245
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.62 0.64
+            roughness 0.3
+            metalness 0.8
+          }
+          geometry Cylinder {
+            height 0.05
+            radius 0.005
+            subdivision 10
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.0953 -0.055 0.11
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.62 0.64
+            roughness 0.3
+            metalness 0.8
+          }
+          geometry Cylinder {
+            height 0.22
+            radius 0.005
+            subdivision 10
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.0857 -0.0495 0.245
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.62 0.64
+            roughness 0.3
+            metalness 0.8
+          }
+          geometry Cylinder {
+            height 0.05
+            radius 0.005
+            subdivision 10
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.0425 0.0736 0.245
+      rotation 0.5000110003630134 0.8660190526287391 0 1.5708
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.62 0.64
+            roughness 0.4
+            metalness 0.6
+          }
+          geometry Cylinder {
+            height 0.055
+            radius 0.018
+            subdivision 24
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.0531 0.092 0.245
+      rotation 0.5000110003630134 0.8660190526287391 0 1.5708
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.85 0.85 0.85
+            roughness 0.3
+            metalness 0.1
+          }
+          geometry Cylinder {
+            height 0.006
+            radius 0.022
+            subdivision 24
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.085 0 0.245
+      rotation 1 0 0 1.5708
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.62 0.64
+            roughness 0.4
+            metalness 0.6
+          }
+          geometry Cylinder {
+            height 0.055
+            radius 0.018
+            subdivision 24
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.1063 0 0.245
+      rotation 1 0 0 1.5708
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.85 0.85 0.85
+            roughness 0.3
+            metalness 0.1
+          }
+          geometry Cylinder {
+            height 0.006
+            radius 0.022
+            subdivision 24
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.0425 -0.0736 0.245
+      rotation 0.5000110003630134 -0.8660190526287391 0 1.5708
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.62 0.64
+            roughness 0.4
+            metalness 0.6
+          }
+          geometry Cylinder {
+            height 0.055
+            radius 0.018
+            subdivision 24
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.0531 -0.092 0.245
+      rotation 0.5000110003630134 -0.8660190526287391 0 1.5708
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.85 0.85 0.85
+            roughness 0.3
+            metalness 0.1
+          }
+          geometry Cylinder {
+            height 0.006
+            radius 0.022
+            subdivision 24
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.0425 -0.0736 0.245
+      rotation -0.5000110003630134 -0.8660190526287391 0 1.5708
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.62 0.64
+            roughness 0.4
+            metalness 0.6
+          }
+          geometry Cylinder {
+            height 0.055
+            radius 0.018
+            subdivision 24
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.0531 -0.092 0.245
+      rotation -0.5000110003630134 -0.8660190526287391 0 1.5708
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.85 0.85 0.85
+            roughness 0.3
+            metalness 0.1
+          }
+          geometry Cylinder {
+            height 0.006
+            radius 0.022
+            subdivision 24
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.085 0 0.245
+      rotation -1 0 0 1.5708
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.62 0.64
+            roughness 0.4
+            metalness 0.6
+          }
+          geometry Cylinder {
+            height 0.055
+            radius 0.018
+            subdivision 24
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.1063 0 0.245
+      rotation -1 0 0 1.5708
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.85 0.85 0.85
+            roughness 0.3
+            metalness 0.1
+          }
+          geometry Cylinder {
+            height 0.006
+            radius 0.022
+            subdivision 24
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.0425 0.0736 0.245
+      rotation -0.5000110003630134 0.8660190526287391 0 1.5708
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.62 0.64
+            roughness 0.4
+            metalness 0.6
+          }
+          geometry Cylinder {
+            height 0.055
+            radius 0.018
+            subdivision 24
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.0531 0.092 0.245
+      rotation -0.5000110003630134 0.8660190526287391 0 1.5708
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.85 0.85 0.85
+            roughness 0.3
+            metalness 0.1
+          }
+          geometry Cylinder {
+            height 0.006
+            radius 0.022
+            subdivision 24
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0.05 0.285
+      rotation 0 0 1 1.5708
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.05 0.35 0.55
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.053 0.012
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.0433 -0.025 0.285
+      rotation 0 0 1 3.6652
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.05 0.35 0.55
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.053 0.012
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.0433 -0.025 0.285
+      rotation 0 0 1 5.7596
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.05 0.35 0.55
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.053 0.012
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.1169 0.0675 0.12
+      rotation 0 0 1 0.5236
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.55 0.3 0.12
+            roughness 0.7
+            metalness 0
+          }
+          geometry Box {
+            size 0.003 0.09 0.07
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.1169 0.0675 0.12
+      rotation 0 0 1 2.618
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.55 0.3 0.12
+            roughness 0.7
+            metalness 0
+          }
+          geometry Box {
+            size 0.003 0.09 0.07
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 -0.135 0.12
+      rotation 0 0 1 4.7124
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.55 0.3 0.12
+            roughness 0.7
+            metalness 0
+          }
+          geometry Box {
+            size 0.003 0.09 0.07
+          }
+        }
+      ]
+    }
+    GPS {
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+        anchor 0.075 0.1299 0
+      }
+      device [
+        RotationalMotor {
+          name "coxa1"
+          maxVelocity 1
+          minPosition -0.75
+          maxPosition 0.85
+          maxTorque 60
+        }
+        PositionSensor {
+          name "coxa1_sensor"
+        }
+      ]
+      endPoint Solid {
+        translation 0.075 0.1299 0
+        rotation 0 0 1 1.0471980000000003
+        children [
+          Pose {
+            translation 0 0 0.11
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.1 0.16 0.5
+                  roughness 0.5
+                  metalness 0.2
+                }
+                geometry Box {
+                  size 0.02 0.02 0.23
+                }
+              }
+            ]
+          }
+          Pose {
+            translation -0.025 0 0.232
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.1 0.16 0.5
+                  roughness 0.5
+                  metalness 0.2
+                }
+                geometry Box {
+                  size 0.07 0.02 0.02
+                }
+              }
+            ]
+          }
+          Pose {
+            translation 0.012 0 0.065
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.1 0.16 0.5
+                  roughness 0.5
+                  metalness 0.2
+                }
+                geometry Box {
+                  size 0.012 0.06 0.03
+                }
+              }
+            ]
+          }
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 0 1 0
+              anchor 0 0 0.065
+            }
+            device [
+              RotationalMotor {
+                name "femur1"
+                maxVelocity 1.5
+                minPosition -0.55
+                maxPosition 0.85
+                maxTorque 120
+              }
+              PositionSensor {
+                name "femur1_sensor"
+              }
+            ]
+            endPoint Solid {
+              translation 0 0 0.065
+              rotation 0 1 0 0
+              children [
+                Pose {
+                  translation 0.19 0 0
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.1 0.16 0.5
+                        roughness 0.5
+                        metalness 0.2
+                      }
+                      geometry Box {
+                        size 0.43 0.05 0.05
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.12 0 0.032
+                  rotation 0 1 0 1.5708
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.62 0.64
+                        roughness 0.4
+                        metalness 0.6
+                      }
+                      geometry Cylinder {
+                        height 0.07
+                        radius 0.017
+                        subdivision 24
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.085 0 0.032
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.9 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.008 0.045 0.045
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.155 0 0.032
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.9 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.008 0.045 0.045
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.21 0 0.032
+                  rotation 0 1 0 1.5708
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.08 0.08 0.08
+                        roughness 0.6
+                        metalness 0
+                      }
+                      geometry Cylinder {
+                        height 0.12
+                        radius 0.008
+                        subdivision 24
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.29 0 -0.032
+                  rotation 0 1 0 1.5708
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.62 0.64
+                        roughness 0.4
+                        metalness 0.6
+                      }
+                      geometry Cylinder {
+                        height 0.07
+                        radius 0.017
+                        subdivision 24
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.255 0 -0.032
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.9 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.008 0.045 0.045
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.325 0 -0.032
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.9 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.008 0.045 0.045
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.3 0.026 0
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.45 0.75 0.95
+                        roughness 0.8
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.08 0.002 0.04
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.05 -0.027 0
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.55 0.3 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.07 0.003 0.045
+                      }
+                    }
+                  ]
+                }
+                HingeJoint {
+                  jointParameters HingeJointParameters {
+                    axis 0 -1 0
+                    anchor 0.38 0 0
+                  }
+                  device [
+                    RotationalMotor {
+                      name "tibia1"
+                      maxVelocity 1.5
+                      minPosition -0.7
+                      maxPosition 1.1
+                      maxTorque 120
+                    }
+                    PositionSensor {
+                      name "tibia1_sensor"
+                    }
+                  ]
+                  endPoint Solid {
+                    translation 0.38 0 0
+                    rotation 0 -1 0 0
+                    children [
+                      Pose {
+                        translation 0 0 -0.2375
+                        children [
+                          Shape {
+                            appearance PBRAppearance {
+                              baseColor 0.1 0.16 0.5
+                              roughness 0.5
+                              metalness 0.2
+                            }
+                            geometry Box {
+                              size 0.02 0.02 0.475
+                            }
+                          }
+                        ]
+                      }
+                      Pose {
+                        translation 0 0 -0.455
+                        children [
+                          Shape {
+                            appearance PBRAppearance {
+                              baseColor 0.08 0.08 0.08
+                              roughness 0.9
+                              metalness 0
+                            }
+                            geometry Sphere {
+                              radius 0.02
+                              subdivision 2
+                            }
+                          }
+                        ]
+                      }
+                      Pose {
+                        translation 0 0 -0.03
+                        rotation 1 0 0 1.5708
+                        children [
+                          Shape {
+                            appearance PBRAppearance {
+                              baseColor 0.62 0.9 0.12
+                              roughness 0.7
+                              metalness 0
+                            }
+                            geometry Cylinder {
+                              height 0.03
+                              radius 0.012
+                              subdivision 24
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                    name "tibia1"
+                    contactMaterial "pie"
+                    boundingObject Group {
+                      children [
+                        Pose {
+                          translation 0 0 -0.2175
+                          children [
+                            Box {
+                              size 0.02 0.02 0.435
+                            }
+                          ]
+                        }
+                        Pose {
+                          translation 0 0 -0.455
+                          children [
+                            Sphere {
+                              radius 0.02
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                    physics Physics {
+                      density -1
+                      mass 0.4
+                      centerOfMass [
+                        0 0 -0.2375
+                      ]
+                    }
+                  }
+                }
+              ]
+              name "femur1"
+              boundingObject Pose {
+                translation 0.19 0 0
+                children [
+                  Box {
+                    size 0.43 0.05 0.05
+                  }
+                ]
+              }
+              physics Physics {
+                density -1
+                mass 1.2
+                centerOfMass [
+                  0.19 0 0
+                ]
+              }
+            }
+          }
+        ]
+        name "coxa1"
+        boundingObject Pose {
+          translation 0 0 0.11
+          children [
+            Box {
+              size 0.02 0.02 0.22
+            }
+          ]
+        }
+        physics Physics {
+          density -1
+          mass 0.4
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+        anchor 0.15 0 0
+      }
+      device [
+        RotationalMotor {
+          name "coxa2"
+          maxVelocity 1
+          minPosition -0.75
+          maxPosition 0.85
+          maxTorque 60
+        }
+        PositionSensor {
+          name "coxa2_sensor"
+        }
+      ]
+      endPoint Solid {
+        translation 0.15 0 0
+        children [
+          Pose {
+            translation 0 0 0.11
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.1 0.16 0.5
+                  roughness 0.5
+                  metalness 0.2
+                }
+                geometry Box {
+                  size 0.02 0.02 0.23
+                }
+              }
+            ]
+          }
+          Pose {
+            translation -0.025 0 0.232
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.1 0.16 0.5
+                  roughness 0.5
+                  metalness 0.2
+                }
+                geometry Box {
+                  size 0.07 0.02 0.02
+                }
+              }
+            ]
+          }
+          Pose {
+            translation 0.012 0 0.065
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.1 0.16 0.5
+                  roughness 0.5
+                  metalness 0.2
+                }
+                geometry Box {
+                  size 0.012 0.06 0.03
+                }
+              }
+            ]
+          }
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 0 1 0
+              anchor 0 0 0.065
+            }
+            device [
+              RotationalMotor {
+                name "femur2"
+                maxVelocity 1.5
+                minPosition -0.55
+                maxPosition 0.85
+                maxTorque 120
+              }
+              PositionSensor {
+                name "femur2_sensor"
+              }
+            ]
+            endPoint Solid {
+              translation 0 0 0.065
+              rotation 0 1 0 0
+              children [
+                Pose {
+                  translation 0.19 0 0
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.1 0.16 0.5
+                        roughness 0.5
+                        metalness 0.2
+                      }
+                      geometry Box {
+                        size 0.43 0.05 0.05
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.12 0 0.032
+                  rotation 0 1 0 1.5708
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.62 0.64
+                        roughness 0.4
+                        metalness 0.6
+                      }
+                      geometry Cylinder {
+                        height 0.07
+                        radius 0.017
+                        subdivision 24
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.085 0 0.032
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.9 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.008 0.045 0.045
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.155 0 0.032
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.9 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.008 0.045 0.045
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.21 0 0.032
+                  rotation 0 1 0 1.5708
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.08 0.08 0.08
+                        roughness 0.6
+                        metalness 0
+                      }
+                      geometry Cylinder {
+                        height 0.12
+                        radius 0.008
+                        subdivision 24
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.29 0 -0.032
+                  rotation 0 1 0 1.5708
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.62 0.64
+                        roughness 0.4
+                        metalness 0.6
+                      }
+                      geometry Cylinder {
+                        height 0.07
+                        radius 0.017
+                        subdivision 24
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.255 0 -0.032
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.9 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.008 0.045 0.045
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.325 0 -0.032
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.9 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.008 0.045 0.045
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.3 0.026 0
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.45 0.75 0.95
+                        roughness 0.8
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.08 0.002 0.04
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.05 -0.027 0
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.55 0.3 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.07 0.003 0.045
+                      }
+                    }
+                  ]
+                }
+                HingeJoint {
+                  jointParameters HingeJointParameters {
+                    axis 0 -1 0
+                    anchor 0.38 0 0
+                  }
+                  device [
+                    RotationalMotor {
+                      name "tibia2"
+                      maxVelocity 1.5
+                      minPosition -0.7
+                      maxPosition 1.1
+                      maxTorque 120
+                    }
+                    PositionSensor {
+                      name "tibia2_sensor"
+                    }
+                  ]
+                  endPoint Solid {
+                    translation 0.38 0 0
+                    rotation 0 -1 0 0
+                    children [
+                      Pose {
+                        translation 0 0 -0.2375
+                        children [
+                          Shape {
+                            appearance PBRAppearance {
+                              baseColor 0.1 0.16 0.5
+                              roughness 0.5
+                              metalness 0.2
+                            }
+                            geometry Box {
+                              size 0.02 0.02 0.475
+                            }
+                          }
+                        ]
+                      }
+                      Pose {
+                        translation 0 0 -0.455
+                        children [
+                          Shape {
+                            appearance PBRAppearance {
+                              baseColor 0.08 0.08 0.08
+                              roughness 0.9
+                              metalness 0
+                            }
+                            geometry Sphere {
+                              radius 0.02
+                              subdivision 2
+                            }
+                          }
+                        ]
+                      }
+                      Pose {
+                        translation 0 0 -0.03
+                        rotation 1 0 0 1.5708
+                        children [
+                          Shape {
+                            appearance PBRAppearance {
+                              baseColor 0.62 0.9 0.12
+                              roughness 0.7
+                              metalness 0
+                            }
+                            geometry Cylinder {
+                              height 0.03
+                              radius 0.012
+                              subdivision 24
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                    name "tibia2"
+                    contactMaterial "pie"
+                    boundingObject Group {
+                      children [
+                        Pose {
+                          translation 0 0 -0.2175
+                          children [
+                            Box {
+                              size 0.02 0.02 0.435
+                            }
+                          ]
+                        }
+                        Pose {
+                          translation 0 0 -0.455
+                          children [
+                            Sphere {
+                              radius 0.02
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                    physics Physics {
+                      density -1
+                      mass 0.4
+                      centerOfMass [
+                        0 0 -0.2375
+                      ]
+                    }
+                  }
+                }
+              ]
+              name "femur2"
+              boundingObject Pose {
+                translation 0.19 0 0
+                children [
+                  Box {
+                    size 0.43 0.05 0.05
+                  }
+                ]
+              }
+              physics Physics {
+                density -1
+                mass 1.2
+                centerOfMass [
+                  0.19 0 0
+                ]
+              }
+            }
+          }
+        ]
+        name "coxa2"
+        boundingObject Pose {
+          translation 0 0 0.11
+          children [
+            Box {
+              size 0.02 0.02 0.22
+            }
+          ]
+        }
+        physics Physics {
+          density -1
+          mass 0.4
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+        anchor 0.075 -0.1299 0
+      }
+      device [
+        RotationalMotor {
+          name "coxa3"
+          maxVelocity 1
+          minPosition -0.75
+          maxPosition 0.85
+          maxTorque 60
+        }
+        PositionSensor {
+          name "coxa3_sensor"
+        }
+      ]
+      endPoint Solid {
+        translation 0.075 -0.1299 0
+        rotation 0 0 -1 1.0471980000000003
+        children [
+          Pose {
+            translation 0 0 0.11
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.1 0.16 0.5
+                  roughness 0.5
+                  metalness 0.2
+                }
+                geometry Box {
+                  size 0.02 0.02 0.23
+                }
+              }
+            ]
+          }
+          Pose {
+            translation -0.025 0 0.232
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.1 0.16 0.5
+                  roughness 0.5
+                  metalness 0.2
+                }
+                geometry Box {
+                  size 0.07 0.02 0.02
+                }
+              }
+            ]
+          }
+          Pose {
+            translation 0.012 0 0.065
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.1 0.16 0.5
+                  roughness 0.5
+                  metalness 0.2
+                }
+                geometry Box {
+                  size 0.012 0.06 0.03
+                }
+              }
+            ]
+          }
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 0 1 0
+              anchor 0 0 0.065
+            }
+            device [
+              RotationalMotor {
+                name "femur3"
+                maxVelocity 1.5
+                minPosition -0.55
+                maxPosition 0.85
+                maxTorque 120
+              }
+              PositionSensor {
+                name "femur3_sensor"
+              }
+            ]
+            endPoint Solid {
+              translation 0 0 0.065
+              rotation 0 1 0 0
+              children [
+                Pose {
+                  translation 0.19 0 0
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.1 0.16 0.5
+                        roughness 0.5
+                        metalness 0.2
+                      }
+                      geometry Box {
+                        size 0.43 0.05 0.05
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.12 0 0.032
+                  rotation 0 1 0 1.5708
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.62 0.64
+                        roughness 0.4
+                        metalness 0.6
+                      }
+                      geometry Cylinder {
+                        height 0.07
+                        radius 0.017
+                        subdivision 24
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.085 0 0.032
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.9 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.008 0.045 0.045
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.155 0 0.032
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.9 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.008 0.045 0.045
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.21 0 0.032
+                  rotation 0 1 0 1.5708
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.08 0.08 0.08
+                        roughness 0.6
+                        metalness 0
+                      }
+                      geometry Cylinder {
+                        height 0.12
+                        radius 0.008
+                        subdivision 24
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.29 0 -0.032
+                  rotation 0 1 0 1.5708
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.62 0.64
+                        roughness 0.4
+                        metalness 0.6
+                      }
+                      geometry Cylinder {
+                        height 0.07
+                        radius 0.017
+                        subdivision 24
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.255 0 -0.032
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.9 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.008 0.045 0.045
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.325 0 -0.032
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.9 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.008 0.045 0.045
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.3 0.026 0
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.45 0.75 0.95
+                        roughness 0.8
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.08 0.002 0.04
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.05 -0.027 0
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.55 0.3 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.07 0.003 0.045
+                      }
+                    }
+                  ]
+                }
+                HingeJoint {
+                  jointParameters HingeJointParameters {
+                    axis 0 -1 0
+                    anchor 0.38 0 0
+                  }
+                  device [
+                    RotationalMotor {
+                      name "tibia3"
+                      maxVelocity 1.5
+                      minPosition -0.7
+                      maxPosition 1.1
+                      maxTorque 120
+                    }
+                    PositionSensor {
+                      name "tibia3_sensor"
+                    }
+                  ]
+                  endPoint Solid {
+                    translation 0.38 0 0
+                    rotation 0 -1 0 0
+                    children [
+                      Pose {
+                        translation 0 0 -0.2375
+                        children [
+                          Shape {
+                            appearance PBRAppearance {
+                              baseColor 0.1 0.16 0.5
+                              roughness 0.5
+                              metalness 0.2
+                            }
+                            geometry Box {
+                              size 0.02 0.02 0.475
+                            }
+                          }
+                        ]
+                      }
+                      Pose {
+                        translation 0 0 -0.455
+                        children [
+                          Shape {
+                            appearance PBRAppearance {
+                              baseColor 0.08 0.08 0.08
+                              roughness 0.9
+                              metalness 0
+                            }
+                            geometry Sphere {
+                              radius 0.02
+                              subdivision 2
+                            }
+                          }
+                        ]
+                      }
+                      Pose {
+                        translation 0 0 -0.03
+                        rotation 1 0 0 1.5708
+                        children [
+                          Shape {
+                            appearance PBRAppearance {
+                              baseColor 0.62 0.9 0.12
+                              roughness 0.7
+                              metalness 0
+                            }
+                            geometry Cylinder {
+                              height 0.03
+                              radius 0.012
+                              subdivision 24
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                    name "tibia3"
+                    contactMaterial "pie"
+                    boundingObject Group {
+                      children [
+                        Pose {
+                          translation 0 0 -0.2175
+                          children [
+                            Box {
+                              size 0.02 0.02 0.435
+                            }
+                          ]
+                        }
+                        Pose {
+                          translation 0 0 -0.455
+                          children [
+                            Sphere {
+                              radius 0.02
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                    physics Physics {
+                      density -1
+                      mass 0.4
+                      centerOfMass [
+                        0 0 -0.2375
+                      ]
+                    }
+                  }
+                }
+              ]
+              name "femur3"
+              boundingObject Pose {
+                translation 0.19 0 0
+                children [
+                  Box {
+                    size 0.43 0.05 0.05
+                  }
+                ]
+              }
+              physics Physics {
+                density -1
+                mass 1.2
+                centerOfMass [
+                  0.19 0 0
+                ]
+              }
+            }
+          }
+        ]
+        name "coxa3"
+        boundingObject Pose {
+          translation 0 0 0.11
+          children [
+            Box {
+              size 0.02 0.02 0.22
+            }
+          ]
+        }
+        physics Physics {
+          density -1
+          mass 0.4
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+        anchor -0.075 -0.1299 0
+      }
+      device [
+        RotationalMotor {
+          name "coxa4"
+          maxVelocity 1
+          minPosition -0.75
+          maxPosition 0.85
+          maxTorque 60
+        }
+        PositionSensor {
+          name "coxa4_sensor"
+        }
+      ]
+      endPoint Solid {
+        translation -0.075 -0.1299 0
+        rotation 0 0 -1 2.094395
+        children [
+          Pose {
+            translation 0 0 0.11
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.1 0.16 0.5
+                  roughness 0.5
+                  metalness 0.2
+                }
+                geometry Box {
+                  size 0.02 0.02 0.23
+                }
+              }
+            ]
+          }
+          Pose {
+            translation -0.025 0 0.232
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.1 0.16 0.5
+                  roughness 0.5
+                  metalness 0.2
+                }
+                geometry Box {
+                  size 0.07 0.02 0.02
+                }
+              }
+            ]
+          }
+          Pose {
+            translation 0.012 0 0.065
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.1 0.16 0.5
+                  roughness 0.5
+                  metalness 0.2
+                }
+                geometry Box {
+                  size 0.012 0.06 0.03
+                }
+              }
+            ]
+          }
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 0 1 0
+              anchor 0 0 0.065
+            }
+            device [
+              RotationalMotor {
+                name "femur4"
+                maxVelocity 1.5
+                minPosition -0.55
+                maxPosition 0.85
+                maxTorque 120
+              }
+              PositionSensor {
+                name "femur4_sensor"
+              }
+            ]
+            endPoint Solid {
+              translation 0 0 0.065
+              rotation 0 1 0 0
+              children [
+                Pose {
+                  translation 0.19 0 0
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.1 0.16 0.5
+                        roughness 0.5
+                        metalness 0.2
+                      }
+                      geometry Box {
+                        size 0.43 0.05 0.05
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.12 0 0.032
+                  rotation 0 1 0 1.5708
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.62 0.64
+                        roughness 0.4
+                        metalness 0.6
+                      }
+                      geometry Cylinder {
+                        height 0.07
+                        radius 0.017
+                        subdivision 24
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.085 0 0.032
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.9 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.008 0.045 0.045
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.155 0 0.032
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.9 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.008 0.045 0.045
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.21 0 0.032
+                  rotation 0 1 0 1.5708
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.08 0.08 0.08
+                        roughness 0.6
+                        metalness 0
+                      }
+                      geometry Cylinder {
+                        height 0.12
+                        radius 0.008
+                        subdivision 24
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.29 0 -0.032
+                  rotation 0 1 0 1.5708
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.62 0.64
+                        roughness 0.4
+                        metalness 0.6
+                      }
+                      geometry Cylinder {
+                        height 0.07
+                        radius 0.017
+                        subdivision 24
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.255 0 -0.032
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.9 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.008 0.045 0.045
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.325 0 -0.032
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.9 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.008 0.045 0.045
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.3 0.026 0
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.45 0.75 0.95
+                        roughness 0.8
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.08 0.002 0.04
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.05 -0.027 0
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.55 0.3 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.07 0.003 0.045
+                      }
+                    }
+                  ]
+                }
+                HingeJoint {
+                  jointParameters HingeJointParameters {
+                    axis 0 -1 0
+                    anchor 0.38 0 0
+                  }
+                  device [
+                    RotationalMotor {
+                      name "tibia4"
+                      maxVelocity 1.5
+                      minPosition -0.7
+                      maxPosition 1.1
+                      maxTorque 120
+                    }
+                    PositionSensor {
+                      name "tibia4_sensor"
+                    }
+                  ]
+                  endPoint Solid {
+                    translation 0.38 0 0
+                    rotation 0 -1 0 0
+                    children [
+                      Pose {
+                        translation 0 0 -0.2375
+                        children [
+                          Shape {
+                            appearance PBRAppearance {
+                              baseColor 0.1 0.16 0.5
+                              roughness 0.5
+                              metalness 0.2
+                            }
+                            geometry Box {
+                              size 0.02 0.02 0.475
+                            }
+                          }
+                        ]
+                      }
+                      Pose {
+                        translation 0 0 -0.455
+                        children [
+                          Shape {
+                            appearance PBRAppearance {
+                              baseColor 0.08 0.08 0.08
+                              roughness 0.9
+                              metalness 0
+                            }
+                            geometry Sphere {
+                              radius 0.02
+                              subdivision 2
+                            }
+                          }
+                        ]
+                      }
+                      Pose {
+                        translation 0 0 -0.03
+                        rotation 1 0 0 1.5708
+                        children [
+                          Shape {
+                            appearance PBRAppearance {
+                              baseColor 0.62 0.9 0.12
+                              roughness 0.7
+                              metalness 0
+                            }
+                            geometry Cylinder {
+                              height 0.03
+                              radius 0.012
+                              subdivision 24
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                    name "tibia4"
+                    contactMaterial "pie"
+                    boundingObject Group {
+                      children [
+                        Pose {
+                          translation 0 0 -0.2175
+                          children [
+                            Box {
+                              size 0.02 0.02 0.435
+                            }
+                          ]
+                        }
+                        Pose {
+                          translation 0 0 -0.455
+                          children [
+                            Sphere {
+                              radius 0.02
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                    physics Physics {
+                      density -1
+                      mass 0.4
+                      centerOfMass [
+                        0 0 -0.2375
+                      ]
+                    }
+                  }
+                }
+              ]
+              name "femur4"
+              boundingObject Pose {
+                translation 0.19 0 0
+                children [
+                  Box {
+                    size 0.43 0.05 0.05
+                  }
+                ]
+              }
+              physics Physics {
+                density -1
+                mass 1.2
+                centerOfMass [
+                  0.19 0 0
+                ]
+              }
+            }
+          }
+        ]
+        name "coxa4"
+        boundingObject Pose {
+          translation 0 0 0.11
+          children [
+            Box {
+              size 0.02 0.02 0.22
+            }
+          ]
+        }
+        physics Physics {
+          density -1
+          mass 0.4
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+        anchor -0.15 0 0
+      }
+      device [
+        RotationalMotor {
+          name "coxa5"
+          maxVelocity 1
+          minPosition -0.75
+          maxPosition 0.85
+          maxTorque 60
+        }
+        PositionSensor {
+          name "coxa5_sensor"
+        }
+      ]
+      endPoint Solid {
+        translation -0.15 0 0
+        rotation 0 0 1 3.141593
+        children [
+          Pose {
+            translation 0 0 0.11
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.1 0.16 0.5
+                  roughness 0.5
+                  metalness 0.2
+                }
+                geometry Box {
+                  size 0.02 0.02 0.23
+                }
+              }
+            ]
+          }
+          Pose {
+            translation -0.025 0 0.232
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.1 0.16 0.5
+                  roughness 0.5
+                  metalness 0.2
+                }
+                geometry Box {
+                  size 0.07 0.02 0.02
+                }
+              }
+            ]
+          }
+          Pose {
+            translation 0.012 0 0.065
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.1 0.16 0.5
+                  roughness 0.5
+                  metalness 0.2
+                }
+                geometry Box {
+                  size 0.012 0.06 0.03
+                }
+              }
+            ]
+          }
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 0 1 0
+              anchor 0 0 0.065
+            }
+            device [
+              RotationalMotor {
+                name "femur5"
+                maxVelocity 1.5
+                minPosition -0.55
+                maxPosition 0.85
+                maxTorque 120
+              }
+              PositionSensor {
+                name "femur5_sensor"
+              }
+            ]
+            endPoint Solid {
+              translation 0 0 0.065
+              rotation 0 1 0 0
+              children [
+                Pose {
+                  translation 0.19 0 0
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.1 0.16 0.5
+                        roughness 0.5
+                        metalness 0.2
+                      }
+                      geometry Box {
+                        size 0.43 0.05 0.05
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.12 0 0.032
+                  rotation 0 1 0 1.5708
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.62 0.64
+                        roughness 0.4
+                        metalness 0.6
+                      }
+                      geometry Cylinder {
+                        height 0.07
+                        radius 0.017
+                        subdivision 24
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.085 0 0.032
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.9 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.008 0.045 0.045
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.155 0 0.032
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.9 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.008 0.045 0.045
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.21 0 0.032
+                  rotation 0 1 0 1.5708
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.08 0.08 0.08
+                        roughness 0.6
+                        metalness 0
+                      }
+                      geometry Cylinder {
+                        height 0.12
+                        radius 0.008
+                        subdivision 24
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.29 0 -0.032
+                  rotation 0 1 0 1.5708
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.62 0.64
+                        roughness 0.4
+                        metalness 0.6
+                      }
+                      geometry Cylinder {
+                        height 0.07
+                        radius 0.017
+                        subdivision 24
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.255 0 -0.032
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.9 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.008 0.045 0.045
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.325 0 -0.032
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.9 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.008 0.045 0.045
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.3 0.026 0
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.45 0.75 0.95
+                        roughness 0.8
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.08 0.002 0.04
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.05 -0.027 0
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.55 0.3 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.07 0.003 0.045
+                      }
+                    }
+                  ]
+                }
+                HingeJoint {
+                  jointParameters HingeJointParameters {
+                    axis 0 -1 0
+                    anchor 0.38 0 0
+                  }
+                  device [
+                    RotationalMotor {
+                      name "tibia5"
+                      maxVelocity 1.5
+                      minPosition -0.7
+                      maxPosition 1.1
+                      maxTorque 120
+                    }
+                    PositionSensor {
+                      name "tibia5_sensor"
+                    }
+                  ]
+                  endPoint Solid {
+                    translation 0.38 0 0
+                    rotation 0 -1 0 0
+                    children [
+                      Pose {
+                        translation 0 0 -0.2375
+                        children [
+                          Shape {
+                            appearance PBRAppearance {
+                              baseColor 0.1 0.16 0.5
+                              roughness 0.5
+                              metalness 0.2
+                            }
+                            geometry Box {
+                              size 0.02 0.02 0.475
+                            }
+                          }
+                        ]
+                      }
+                      Pose {
+                        translation 0 0 -0.455
+                        children [
+                          Shape {
+                            appearance PBRAppearance {
+                              baseColor 0.08 0.08 0.08
+                              roughness 0.9
+                              metalness 0
+                            }
+                            geometry Sphere {
+                              radius 0.02
+                              subdivision 2
+                            }
+                          }
+                        ]
+                      }
+                      Pose {
+                        translation 0 0 -0.03
+                        rotation 1 0 0 1.5708
+                        children [
+                          Shape {
+                            appearance PBRAppearance {
+                              baseColor 0.62 0.9 0.12
+                              roughness 0.7
+                              metalness 0
+                            }
+                            geometry Cylinder {
+                              height 0.03
+                              radius 0.012
+                              subdivision 24
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                    name "tibia5"
+                    contactMaterial "pie"
+                    boundingObject Group {
+                      children [
+                        Pose {
+                          translation 0 0 -0.2175
+                          children [
+                            Box {
+                              size 0.02 0.02 0.435
+                            }
+                          ]
+                        }
+                        Pose {
+                          translation 0 0 -0.455
+                          children [
+                            Sphere {
+                              radius 0.02
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                    physics Physics {
+                      density -1
+                      mass 0.4
+                      centerOfMass [
+                        0 0 -0.2375
+                      ]
+                    }
+                  }
+                }
+              ]
+              name "femur5"
+              boundingObject Pose {
+                translation 0.19 0 0
+                children [
+                  Box {
+                    size 0.43 0.05 0.05
+                  }
+                ]
+              }
+              physics Physics {
+                density -1
+                mass 1.2
+                centerOfMass [
+                  0.19 0 0
+                ]
+              }
+            }
+          }
+        ]
+        name "coxa5"
+        boundingObject Pose {
+          translation 0 0 0.11
+          children [
+            Box {
+              size 0.02 0.02 0.22
+            }
+          ]
+        }
+        physics Physics {
+          density -1
+          mass 0.4
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+        anchor -0.075 0.1299 0
+      }
+      device [
+        RotationalMotor {
+          name "coxa6"
+          maxVelocity 1
+          minPosition -0.75
+          maxPosition 0.85
+          maxTorque 60
+        }
+        PositionSensor {
+          name "coxa6_sensor"
+        }
+      ]
+      endPoint Solid {
+        translation -0.075 0.1299 0
+        rotation 0 0 1 2.094395
+        children [
+          Pose {
+            translation 0 0 0.11
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.1 0.16 0.5
+                  roughness 0.5
+                  metalness 0.2
+                }
+                geometry Box {
+                  size 0.02 0.02 0.23
+                }
+              }
+            ]
+          }
+          Pose {
+            translation -0.025 0 0.232
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.1 0.16 0.5
+                  roughness 0.5
+                  metalness 0.2
+                }
+                geometry Box {
+                  size 0.07 0.02 0.02
+                }
+              }
+            ]
+          }
+          Pose {
+            translation 0.012 0 0.065
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.1 0.16 0.5
+                  roughness 0.5
+                  metalness 0.2
+                }
+                geometry Box {
+                  size 0.012 0.06 0.03
+                }
+              }
+            ]
+          }
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 0 1 0
+              anchor 0 0 0.065
+            }
+            device [
+              RotationalMotor {
+                name "femur6"
+                maxVelocity 1.5
+                minPosition -0.55
+                maxPosition 0.85
+                maxTorque 120
+              }
+              PositionSensor {
+                name "femur6_sensor"
+              }
+            ]
+            endPoint Solid {
+              translation 0 0 0.065
+              rotation 0 1 0 0
+              children [
+                Pose {
+                  translation 0.19 0 0
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.1 0.16 0.5
+                        roughness 0.5
+                        metalness 0.2
+                      }
+                      geometry Box {
+                        size 0.43 0.05 0.05
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.12 0 0.032
+                  rotation 0 1 0 1.5708
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.62 0.64
+                        roughness 0.4
+                        metalness 0.6
+                      }
+                      geometry Cylinder {
+                        height 0.07
+                        radius 0.017
+                        subdivision 24
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.085 0 0.032
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.9 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.008 0.045 0.045
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.155 0 0.032
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.9 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.008 0.045 0.045
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.21 0 0.032
+                  rotation 0 1 0 1.5708
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.08 0.08 0.08
+                        roughness 0.6
+                        metalness 0
+                      }
+                      geometry Cylinder {
+                        height 0.12
+                        radius 0.008
+                        subdivision 24
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.29 0 -0.032
+                  rotation 0 1 0 1.5708
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.62 0.64
+                        roughness 0.4
+                        metalness 0.6
+                      }
+                      geometry Cylinder {
+                        height 0.07
+                        radius 0.017
+                        subdivision 24
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.255 0 -0.032
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.9 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.008 0.045 0.045
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.325 0 -0.032
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.62 0.9 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.008 0.045 0.045
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.3 0.026 0
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.45 0.75 0.95
+                        roughness 0.8
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.08 0.002 0.04
+                      }
+                    }
+                  ]
+                }
+                Pose {
+                  translation 0.05 -0.027 0
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.55 0.3 0.12
+                        roughness 0.7
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.07 0.003 0.045
+                      }
+                    }
+                  ]
+                }
+                HingeJoint {
+                  jointParameters HingeJointParameters {
+                    axis 0 -1 0
+                    anchor 0.38 0 0
+                  }
+                  device [
+                    RotationalMotor {
+                      name "tibia6"
+                      maxVelocity 1.5
+                      minPosition -0.7
+                      maxPosition 1.1
+                      maxTorque 120
+                    }
+                    PositionSensor {
+                      name "tibia6_sensor"
+                    }
+                  ]
+                  endPoint Solid {
+                    translation 0.38 0 0
+                    rotation 0 -1 0 0
+                    children [
+                      Pose {
+                        translation 0 0 -0.2375
+                        children [
+                          Shape {
+                            appearance PBRAppearance {
+                              baseColor 0.1 0.16 0.5
+                              roughness 0.5
+                              metalness 0.2
+                            }
+                            geometry Box {
+                              size 0.02 0.02 0.475
+                            }
+                          }
+                        ]
+                      }
+                      Pose {
+                        translation 0 0 -0.455
+                        children [
+                          Shape {
+                            appearance PBRAppearance {
+                              baseColor 0.08 0.08 0.08
+                              roughness 0.9
+                              metalness 0
+                            }
+                            geometry Sphere {
+                              radius 0.02
+                              subdivision 2
+                            }
+                          }
+                        ]
+                      }
+                      Pose {
+                        translation 0 0 -0.03
+                        rotation 1 0 0 1.5708
+                        children [
+                          Shape {
+                            appearance PBRAppearance {
+                              baseColor 0.62 0.9 0.12
+                              roughness 0.7
+                              metalness 0
+                            }
+                            geometry Cylinder {
+                              height 0.03
+                              radius 0.012
+                              subdivision 24
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                    name "tibia6"
+                    contactMaterial "pie"
+                    boundingObject Group {
+                      children [
+                        Pose {
+                          translation 0 0 -0.2175
+                          children [
+                            Box {
+                              size 0.02 0.02 0.435
+                            }
+                          ]
+                        }
+                        Pose {
+                          translation 0 0 -0.455
+                          children [
+                            Sphere {
+                              radius 0.02
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                    physics Physics {
+                      density -1
+                      mass 0.4
+                      centerOfMass [
+                        0 0 -0.2375
+                      ]
+                    }
+                  }
+                }
+              ]
+              name "femur6"
+              boundingObject Pose {
+                translation 0.19 0 0
+                children [
+                  Box {
+                    size 0.43 0.05 0.05
+                  }
+                ]
+              }
+              physics Physics {
+                density -1
+                mass 1.2
+                centerOfMass [
+                  0.19 0 0
+                ]
+              }
+            }
+          }
+        ]
+        name "coxa6"
+        boundingObject Pose {
+          translation 0 0 0.11
+          children [
+            Box {
+              size 0.02 0.02 0.22
+            }
+          ]
+        }
+        physics Physics {
+          density -1
+          mass 0.4
+        }
+      }
+    }
+  ]
+  name "HEXABOT"
+  boundingObject Pose {
+    translation 0 0 0.11
+    children [
+      Cylinder {
+        height 0.22
+        radius 0.15
+        subdivision 16
+      }
+    ]
+  }
+  physics Physics {
+    density -1
+    mass 8
+    centerOfMass [
+      0 0 0.11
+    ]
+  }
+  controller "hexabot_tcp"
+  controllerArgs [
+    "1001"
+    "1002"
+    "1003"
+  ]
+}

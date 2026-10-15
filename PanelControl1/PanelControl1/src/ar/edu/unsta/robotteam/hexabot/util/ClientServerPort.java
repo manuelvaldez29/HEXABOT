@@ -8,16 +8,24 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.util.concurrent.TimeoutException;
 
 /**
+ * Canal de comunicación con un Arduino. Puede ser un puerto serie (robot real)
+ * o una conexión TCP/IP (robot simulado en Webots). Para TCP, el nombre del
+ * puerto tiene la forma "tcp://host:puerto", por ejemplo "tcp://localhost:5000".
  *
  * @author Laboratorio de Robótica / Facultad de Ingeniería / UNSTA
  */
 public class ClientServerPort {
 
+    public static final String PREFIJO_TCP = "tcp://";
+
     private String m_portName;
     private SerialPort m_port;
+    private Socket m_socket;
     private BufferedReader m_reader;
     private PrintWriter m_writer;
     private int m_timeoutInMs;
@@ -41,13 +49,30 @@ public class ClientServerPort {
      * @throws Exception
      */
     public void open() throws Exception {
-        m_port = ar.edu.unsta.robotteam.hexabot.util.HexaUtils.open(m_portName,
-                115200);
-        InputStream l_in = m_port.getInputStream();
+        InputStream l_in;
+        OutputStream l_out;
+        if (m_portName.startsWith(PREFIJO_TCP)) {
+            // Robot simulado: "tcp://host:puerto"
+            String l_direccion = m_portName.substring(PREFIJO_TCP.length());
+            int l_dosPuntos = l_direccion.lastIndexOf(':');
+            String l_host = l_direccion.substring(0, l_dosPuntos);
+            int l_puerto = Integer.parseInt(l_direccion.substring(
+                    l_dosPuntos + 1));
+            m_socket = new Socket();
+            m_socket.connect(new InetSocketAddress(l_host, l_puerto), 3000);
+            m_socket.setTcpNoDelay(true);
+            l_in = m_socket.getInputStream();
+            l_out = m_socket.getOutputStream();
+        } else {
+            // Robot real: puerto serie
+            m_port = ar.edu.unsta.robotteam.hexabot.util.HexaUtils.open(
+                    m_portName, 115200);
+            l_in = m_port.getInputStream();
+            l_out = m_port.getOutputStream();
+            Thread.sleep(1000);
+        } // end if
         m_reader = new BufferedReader(new InputStreamReader(l_in, "ASCII"));
-        OutputStream l_out = m_port.getOutputStream();
         m_writer = new PrintWriter(new OutputStreamWriter(l_out, "ASCII"), true);
-        Thread.sleep(1000);
     }
 
     /**
@@ -64,7 +89,12 @@ public class ClientServerPort {
         } catch (Exception l_ex) {
         }
         try {
-            m_port.close();
+            if (m_port != null) {
+                m_port.close();
+            } // end if
+            if (m_socket != null) {
+                m_socket.close();
+            } // end if
         } catch (Exception l_ex) {
         }
     }
