@@ -3,3 +3,6 @@ PanelControl1/PanelControl1/build/compilado/
 
 # Python
 __pycache__/
+
+# Java 8 de 32 bits para el panel original (se baja con bridge/descargar_java8.bat)
+bridge/java8-32/
