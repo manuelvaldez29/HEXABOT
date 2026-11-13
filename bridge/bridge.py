@@ -56,10 +56,23 @@ class Canal:
         self.ver_trafico = ver_trafico
         self.serie = None
         self.tcp = None              # socket conectado con Webots, o None
+        # Texto recibido que todavía no completó una línea, para que
+        # --ver-trafico muestre cada comando entero aunque llegue en pedazos
+        self.pendiente = {"panel  -> webots": "", "webots -> panel ": ""}
 
     def log(self, mensaje):
         print(f"[{self.nombre} {self.puerto_com} <-> "
               f"{self.destino[0]}:{self.destino[1]}] {mensaje}", flush=True)
+
+    def log_trafico(self, sentido, datos):
+        """Muestra el tráfico línea por línea (solo con --ver-trafico)."""
+        if not self.ver_trafico:
+            return
+        texto = self.pendiente[sentido] + datos.decode("ascii", errors="replace")
+        *lineas, self.pendiente[sentido] = texto.replace("\r", "").split("\n")
+        for linea in lineas:
+            if linea.strip():
+                self.log(f"{sentido}: {linea.strip()}")
 
     def iniciar(self):
         # La velocidad no importa en un puerto virtual, pero se usa la misma
@@ -75,8 +88,7 @@ class Canal:
             datos = self.serie.read(self.serie.in_waiting or 1)
             if not datos:
                 continue
-            if self.ver_trafico:
-                self.log(f"panel  -> webots: {mostrar(datos)}")
+            self.log_trafico("panel  -> webots", datos)
             conexion = self.tcp
             if conexion is None:
                 self.log(f"sin conexión con Webots; se descarta {mostrar(datos)}")
@@ -103,8 +115,7 @@ class Canal:
                     datos = conexion.recv(4096)
                     if not datos:
                         break
-                    if self.ver_trafico:
-                        self.log(f"webots -> panel : {mostrar(datos)}")
+                    self.log_trafico("webots -> panel ", datos)
                     self.serie.write(datos)
             except OSError:
                 pass

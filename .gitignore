@@ -6,3 +6,6 @@ __pycache__/
 
 # Java 8 de 32 bits para el panel original (se baja con bridge/descargar_java8.bat)
 bridge/java8-32/
+
+# Librerías de Node para generar el informe (se instalan con npm install)
+informe/node_modules/

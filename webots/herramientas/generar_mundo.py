@@ -31,11 +31,15 @@ LARGO_FEMUR = 0.380       # entre ejes (el caño mide 430 mm)
 LARGO_TIBIA = 0.475       # de la rodilla al punto de apoyo
 ALTURA_INICIAL = 0.410    # del piso al origen (Hexapodo.m_height)
 
-# --- Masas en kg (estimadas: chapa de acero 1,5 mm, caño de aluminio) -------
-MASA_CUERPO = 8.0
-MASA_COXA = 0.4
-MASA_FEMUR = 1.2          # incluye los dos actuadores montados adentro
-MASA_TIBIA = 0.4
+# --- Masas en kg --------------------------------------------------------------
+# El total, 18 kg, es el peso del robot real según la gacetilla de prensa del
+# proyecto. El reparto por pieza es estimado: el fémur es lo más pesado de la
+# pata porque lleva adentro los dos actuadores (cada motor pesa 224 g).
+# Total: 6,0 + 6 × (0,25 + 1,5 + 0,25) = 18 kg
+MASA_CUERPO = 6.0
+MASA_COXA = 0.25
+MASA_FEMUR = 1.5          # incluye los dos actuadores montados adentro
+MASA_TIBIA = 0.25
 
 # --- Motores ----------------------------------------------------------------
 # Velocidad máxima de cada articulación (rad/s) y torque máximo (N·m).
