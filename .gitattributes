@@ -1,0 +1,3 @@
+# Los scripts de Windows necesitan saltos de línea CRLF (los que usan goto
+# pueden fallar con LF)
+*.bat text eol=crlf
